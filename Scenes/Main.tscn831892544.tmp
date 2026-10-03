@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://d1uqtum4t7uku"]
+
+[ext_resource type="Script" uid="uid://cas4mtgidmb30" path="res://Scripts/Main.gd" id="1_kln2b"]
+[ext_resource type="Texture2D" uid="uid://mo1r6vcl8cj1" path="res://Textures/background-day.png" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://dlj7j2vkfwcu4" path="res://Scenes/Pipe.tscn" id="2_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://b43mluws736me" path="res://Scenes/Finish.tscn" id="3_jw32o"]
+[ext_resource type="PackedScene" uid="uid://enka6wakk8k7" path="res://Scenes/Bird.tscn" id="3_rgh2o"]
+[ext_resource type="Script" uid="uid://csxrld6whsyeh" path="res://Scripts/Ground.gd" id="5_v1gob"]
+[ext_resource type="Texture2D" uid="uid://p4e6bbo5lua6" path="res://Textures/base.png" id="6_jw32o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7q8l"]
+size = Vector2(576, 112)
+
+[node name="Main" type="Node2D" unique_id=1262506493]
+script = ExtResource("1_kln2b")
+pipe_scene = ExtResource("2_pbw6q")
+finish_scene = ExtResource("3_jw32o")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=52140114]
+texture = ExtResource("1_r150o")
+offset = Vector2(144, 256)
+
+[node name="Bird" parent="." unique_id=267687095 instance=ExtResource("3_rgh2o")]
+position = Vector2(36, 180)
+
+[node name="Ground" type="Node2D" parent="." unique_id=319447396]
+z_index = 1
+
+[node name="Area2D" type="Area2D" parent="Ground" unique_id=495902563]
+position = Vector2(0, 456)
+script = ExtResource("5_v1gob")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/Area2D" unique_id=709161502]
+position = Vector2(288, 0)
+scale = Vector2(1.715, 1)
+texture = ExtResource("6_jw32o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Area2D" unique_id=1907857456]
+position = Vector2(288, 0)
+shape = SubResource("RectangleShape2D_s7q8l")
+
+[node name="PipeTimer" type="Timer" parent="." unique_id=1851999820]
+wait_time = 2.0
+
+[node name="Control" type="Control" parent="." unique_id=2144306600]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=393403558]
+layout_mode = 1
+offset_right = 288.0
+offset_bottom = 512.0
+texture = ExtResource("1_r150o")
+
+[node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=1500202289]
+layout_mode = 1
+offset_right = 288.0
+offset_bottom = 400.0
+
+[node name="Label" type="Label" parent="Control/CenterContainer" unique_id=1334740961]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "Je hebt gewonnen"
+
+[connection signal="body_entered" from="Ground/Area2D" to="Ground/Area2D" method="_on_body_entered"]
+[connection signal="hit" from="Ground/Area2D" to="." method="_on_ground_hit"]
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]

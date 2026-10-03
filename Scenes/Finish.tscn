@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b43mluws736me"]
+
+[ext_resource type="Texture2D" uid="uid://duyyuwvscl58x" path="res://Textures/finish-line.png" id="1_4ua6g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ua6g"]
+size = Vector2(66, 781)
+
+[node name="Finish" type="Node2D" unique_id=401762325]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=818990428]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=375041126]
+rotation = 1.5707964
+texture = ExtResource("1_4ua6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1823641571]
+shape = SubResource("RectangleShape2D_4ua6g")

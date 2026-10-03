@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://dlj7j2vkfwcu4"]
+
+[ext_resource type="Script" uid="uid://cwkq6ave8bqtj" path="res://Scripts/Pipe.gd" id="1_nq301"]
+[ext_resource type="Texture2D" uid="uid://c085t3gk1cigu" path="res://Textures/pipe-red.png" id="2_t5chl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7q8l"]
+size = Vector2(52, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq301"]
+size = Vector2(52, 320)
+
+[node name="Pipe" type="Node2D" unique_id=1894315957]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1303194830]
+script = ExtResource("1_nq301")
+
+[node name="Lower" type="Sprite2D" parent="Area2D" unique_id=1554397212]
+position = Vector2(0, 225)
+texture = ExtResource("2_t5chl")
+
+[node name="LowerCollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1618786620]
+position = Vector2(0, 225)
+shape = SubResource("RectangleShape2D_s7q8l")
+
+[node name="Upper" type="Sprite2D" parent="Area2D" unique_id=1151610341]
+position = Vector2(0, -225)
+texture = ExtResource("2_t5chl")
+flip_v = true
+
+[node name="UpperCollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=138974707]
+position = Vector2(0, -225)
+shape = SubResource("RectangleShape2D_nq301")
+
+[node name="Label1" type="Label" parent="Area2D" unique_id=1355515566]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = 75.0
+offset_right = 16.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Area2D" unique_id=524025863]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -147.0
+offset_right = 17.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="hit" from="Area2D" to="Area2D" method="_on_hit"]

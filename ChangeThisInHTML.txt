@@ -1,0 +1,46 @@
+This:
+
+html, body, #canvas {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+To this:
+
+html, body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+}
+
+This:
+
+#canvas {
+	display: block;
+}
+
+To this:
+
+#canvas {
+	display: block;
+	height: 100vh !important;
+	width: auto !important;
+}
+
+This:
+
+<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+
+To this:
+
+<link rel="icon" href="https://talentintveld.be/wp-content/uploads/2024/08/cropped-Groen-32x32.png" sizes="32x32">
+<link rel="icon" href="https://talentintveld.be/wp-content/uploads/2024/08/cropped-Groen-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://talentintveld.be/wp-content/uploads/2024/08/cropped-Groen-180x180.png">
