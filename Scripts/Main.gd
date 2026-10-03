@@ -3,7 +3,7 @@ extends Node2D
 @export var pipe_scene: PackedScene
 @export var finish_scene: PackedScene
 
-const SCROLL_SPEED: float = 1.1
+const SCROLL_SPEED: float = 125.0
 const PIPE_DELAY: int = 150
 const PIPE_RANGE: int = 150
 const WORD: String = "HARIG"
@@ -57,18 +57,18 @@ func start_game() -> void:
 	$PipeTimer.start()
 	generate_pipes()
 	
-func _process(_delta) -> void:
+func _process(delta: float) -> void:
 	if game_running:
 		check_top()
 		
-		scroll += SCROLL_SPEED
+		scroll += SCROLL_SPEED * delta
 		if scroll >= 288:
 			scroll = 0
 		$Ground/Area2D.position.x = -scroll
 		
 		for pipe in pipes:
 			if is_instance_valid(pipe):
-				pipe.position.x -= SCROLL_SPEED
+				pipe.position.x -= SCROLL_SPEED * delta
 
 func _on_pipe_timer_timeout() -> void:
 	generate_pipes()
