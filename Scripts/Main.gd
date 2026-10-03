@@ -3,7 +3,7 @@ extends Node2D
 @export var pipe_scene: PackedScene
 @export var finish_scene: PackedScene
 
-const SCROLL_SPEED: float = 1.25
+const SCROLL_SPEED: float = 1.1
 const PIPE_DELAY: int = 150
 const PIPE_RANGE: int = 150
 const WORD: String = "HARIG"
@@ -19,6 +19,7 @@ var letter_index: int = 0
 var screen_size: Vector2i
 
 func _ready() -> void:
+	add_to_group("MainGame")
 	screen_size = get_window().size
 	ground_height = $Ground/Area2D/Sprite2D.texture.get_height()
 	new_game()
@@ -48,7 +49,6 @@ func _input(event: InputEvent) -> void:
 					start_game()
 				elif $Bird.flying:
 					$Bird.flap()
-					check_top()
 					
 func start_game() -> void:
 	game_running = true
@@ -59,6 +59,8 @@ func start_game() -> void:
 	
 func _process(_delta) -> void:
 	if game_running:
+		check_top()
+		
 		scroll += SCROLL_SPEED
 		if scroll >= 288:
 			scroll = 0
@@ -79,7 +81,6 @@ func generate_pipes() -> void:
 	var pipe = pipe_scene.instantiate()
 	pipe.position.x = 288 + PIPE_DELAY
 	pipe.position.y = (512 - ground_height) / 2.0 + randi_range(-PIPE_RANGE, PIPE_RANGE)
-	pipe.get_node("Area2D").hit.connect(bird_hit)
 	if pipe_count % 2 == 0 and letter_index < WORD.length():
 		var next_letter = WORD[letter_index]
 		if pipe.get_node("Area2D").has_method("set_letter"):
@@ -112,6 +113,7 @@ func stop_game() -> void:
 	$PipeTimer.stop()
 	$Bird.flying = false
 	game_running = false
+	game_over = true
 
 func check_top() -> void:
 	if $Bird.position.y < 0:
@@ -120,19 +122,19 @@ func check_top() -> void:
 		stop_game()
 			
 func bird_hit() -> void:
-	if $Bird.falling:
+	if $Bird.falling or game_over:
 		return
+		
+	game_over = true
 	$Bird.flying = false
 	$Bird.falling = true
 	stop_game()
 
+
 func _on_ground_hit() -> void:
 	$Bird.flying = false
 	$Bird.falling = false
-	game_over = true
 	$Again.visible = true
-	stop_game()
 
-
-func _on_button_pressed() -> void:
+func _on_again_button_pressed() -> void:
 	new_game()

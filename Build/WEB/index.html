@@ -5,16 +5,10 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 		<title>Flappy Bird</title>
 		<style>
-html, body {
+html, body, #canvas {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: black;
 }
 
 body {
@@ -26,8 +20,6 @@ body {
 
 #canvas {
 	display: block;
-	height: 100vh !important;
-	width: auto !important;
 }
 
 #canvas:focus {
@@ -98,9 +90,8 @@ body {
 	z-index: 1;
 }
 		</style>
-		<link rel="icon" href="https://talentintveld.be/wp-content/uploads/2024/08/cropped-Groen-32x32.png" sizes="32x32">
-		<link rel="icon" href="https://talentintveld.be/wp-content/uploads/2024/08/cropped-Groen-192x192.png" sizes="192x192">
-		<link rel="apple-touch-icon" href="https://talentintveld.be/wp-content/uploads/2024/08/cropped-Groen-180x180.png">
+		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
 
 	</head>
 	<body>
@@ -120,7 +111,7 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":1,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":57996,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":1,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":58524,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

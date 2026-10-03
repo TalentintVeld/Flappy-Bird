@@ -72,14 +72,33 @@ layout_mode = 1
 offset_right = 288.0
 offset_bottom = 400.0
 
-[node name="Label" type="Label" parent="Won/CenterContainer" unique_id=1334740961]
+[node name="VBoxContainer" type="VBoxContainer" parent="Won/CenterContainer" unique_id=947161915]
 layout_mode = 2
+offset_transform_enabled = true
+theme_override_constants/separation = 100
+
+[node name="Label" type="Label" parent="Won/CenterContainer/VBoxContainer" unique_id=1334740961]
+layout_mode = 2
+offset_transform_position_ratio = Vector2(-0.205, 0)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 30
 text = "Je hebt gewonnen"
 
+[node name="Button" type="Button" parent="Won/CenterContainer/VBoxContainer" unique_id=280665063]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jw32o")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_50glp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vy5pj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_bmxlf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4kpch")
+text = "Speel nog eens"
+
 [node name="Again" type="Control" parent="." unique_id=499931404]
+visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 15
@@ -114,4 +133,5 @@ text = "Speel nog eens"
 [connection signal="body_entered" from="Ground/Area2D" to="Ground/Area2D" method="_on_body_entered"]
 [connection signal="hit" from="Ground/Area2D" to="." method="_on_ground_hit"]
 [connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
-[connection signal="pressed" from="Again/CenterContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Won/CenterContainer/VBoxContainer/Button" to="." method="_on_again_button_pressed"]
+[connection signal="pressed" from="Again/CenterContainer/Button" to="." method="_on_again_button_pressed"]

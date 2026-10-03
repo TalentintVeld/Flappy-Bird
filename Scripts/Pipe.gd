@@ -1,16 +1,17 @@
 extends Area2D
 
-signal hit
-
-func _on_body_entered(_body) -> void:
-	hit.emit()
+func _on_body_entered(body) -> void:
+	if body.name == "Bird":
+		var main_node = get_tree().get_first_node_in_group("MainGame")
+		if main_node and main_node.has_method("bird_hit"):
+			main_node.bird_hit()
 
 func set_letter(letter: String):
-	$Label1.text = letter
-	$Label1.show()
-	$Label2.text = letter
-	$Label2.show()
+	$Lower/Label1.text = letter
+	$Lower/Label1.show()
+	$Upper/Label2.text = letter
+	$Upper/Label2.show()
 
 func hide_letter():
-	$Label1.hide()
-	$Label2.hide()
+	$Lower/Label1.hide()
+	$Upper/Label2.hide()

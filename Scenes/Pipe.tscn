@@ -15,57 +15,53 @@ size = Vector2(52, 320)
 script = ExtResource("1_nq301")
 
 [node name="Lower" type="Sprite2D" parent="Area2D" unique_id=1554397212]
-position = Vector2(0, 225)
+position = Vector2(0, 250)
 texture = ExtResource("2_t5chl")
 
+[node name="Label1" type="Label" parent="Area2D/Lower" unique_id=1355515566]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.0
+offset_top = -160.0
+offset_right = -7.0
+offset_bottom = -91.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="LowerCollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1618786620]
-position = Vector2(0, 225)
+position = Vector2(0, 250)
 shape = SubResource("RectangleShape2D_s7q8l")
 
 [node name="Upper" type="Sprite2D" parent="Area2D" unique_id=1151610341]
-position = Vector2(0, -225)
+position = Vector2(0, -250)
 texture = ExtResource("2_t5chl")
 flip_v = true
 
+[node name="Label2" type="Label" parent="Area2D/Upper" unique_id=524025863]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -229.0
+offset_right = -7.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="UpperCollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=138974707]
-position = Vector2(0, -225)
+position = Vector2(0, -250)
 shape = SubResource("RectangleShape2D_nq301")
 
-[node name="Label1" type="Label" parent="Area2D" unique_id=1355515566]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -17.0
-offset_top = 75.0
-offset_right = 16.0
-offset_bottom = 144.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 50
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Label2" type="Label" parent="Area2D" unique_id=524025863]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -147.0
-offset_right = 17.0
-offset_bottom = -78.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 50
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="hit" from="Area2D" to="Area2D" method="_on_hit"]
