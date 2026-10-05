@@ -16,11 +16,9 @@ var ground_height: int
 var pipes: Array
 var pipe_count: int = 0
 var letter_index: int = 0
-var screen_size: Vector2i
 
 func _ready() -> void:
 	add_to_group("MainGame")
-	screen_size = get_window().size
 	ground_height = $Ground/Area2D/Sprite2D.texture.get_height()
 	new_game()
 	

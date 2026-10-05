@@ -53,6 +53,7 @@ shape = SubResource("RectangleShape2D_s7q8l")
 wait_time = 3.0
 
 [node name="Won" type="Control" parent="." unique_id=2144306600]
+visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 15
