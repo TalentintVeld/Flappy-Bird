@@ -30,16 +30,9 @@ To this:
 
 #canvas {
 	display: block;
-	aspect-ratio: 288 / 512 !important;
-	width: auto !important;
+	width: 100% !important;
 	height: 100% !important;
-}
-
-@media (max-width: 288px) {
-	#canvas {
-		width: 100% !important;
-		height: auto !important;
-	}
+	object-fit: contain;
 }
 
 This:
