@@ -46,7 +46,7 @@ grow_vertical = 2
 [node name="CenterContainer" type="CenterContainer" parent="Won" unique_id=1500202289]
 layout_mode = 1
 offset_right = 288.0
-offset_bottom = 400.0
+offset_bottom = 512.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Won/CenterContainer" unique_id=947161915]
 layout_mode = 2
@@ -86,7 +86,7 @@ grow_vertical = 2
 [node name="CenterContainer" type="CenterContainer" parent="Again" unique_id=1408722117]
 layout_mode = 1
 offset_right = 288.0
-offset_bottom = 400.0
+offset_bottom = 512.0
 
 [node name="Button" type="Button" parent="Again/CenterContainer" unique_id=477533686]
 layout_mode = 2

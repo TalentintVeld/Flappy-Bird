@@ -111,18 +111,19 @@ func stop_game() -> void:
 	$Bird.flying = false
 	game_running = false
 	game_over = true
-	$Again.visible = true
 
 func check_top() -> void:
 	if $Bird.position.y < 0:
 		$Bird.flying = false
 		$Bird.falling = true
+		$Again.visible = true
 		stop_game()
 		
 func check_bottom() -> void:
 	if $Bird.position.y > 512:
 		$Bird.flying = false
 		$Bird.falling = true
+		$Again.visible = true
 		stop_game()
 			
 func bird_hit() -> void:
@@ -132,6 +133,7 @@ func bird_hit() -> void:
 	game_over = true
 	$Bird.flying = false
 	$Bird.falling = true
+	$Again.visible = true
 	stop_game()
 
 func _on_again_button_pressed() -> void:
