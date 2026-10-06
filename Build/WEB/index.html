@@ -26,8 +26,16 @@ body {
 
 #canvas {
 	display: block;
-	height: 100vh !important;
+	aspect-ratio: 288 / 512 !important;
 	width: auto !important;
+	height: 100% !important;
+}
+
+@media (max-width: 288px) {
+	#canvas {
+		width: 100% !important;
+		height: auto !important;
+	}
 }
 
 #canvas:focus {
@@ -120,7 +128,7 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":1,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":58508,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":1,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":7266688,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const GRAVITY: int = 1500
+const GRAVITY: int = 1400
 const MAX_VEL: int = 500
 const FLAP_SPEED: int = -350
 const START_POS = Vector2(36, 180)

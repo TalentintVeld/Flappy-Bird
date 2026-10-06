@@ -12,14 +12,12 @@ var game_running: bool
 var game_over: bool
 var scroll: float = 0.0
 var score
-var ground_height: int
 var pipes: Array
 var pipe_count: int = 0
 var letter_index: int = 0
 
 func _ready() -> void:
 	add_to_group("MainGame")
-	ground_height = $Ground/Area2D/Sprite2D.texture.get_height()
 	new_game()
 	
 func new_game() -> void:
@@ -58,11 +56,12 @@ func start_game() -> void:
 func _process(delta: float) -> void:
 	if game_running:
 		check_top()
+		check_bottom()
 		
 		scroll += SCROLL_SPEED * delta
 		if scroll >= 288:
 			scroll = 0
-		$Ground/Area2D.position.x = -scroll
+		# $Ground/Area2D.position.x = -scroll
 		
 		for pipe in pipes:
 			if is_instance_valid(pipe):
@@ -78,7 +77,7 @@ func generate_pipes() -> void:
 	
 	var pipe = pipe_scene.instantiate()
 	pipe.position.x = 288 + PIPE_DELAY
-	pipe.position.y = (512 - ground_height) / 2.0 + randi_range(-PIPE_RANGE, PIPE_RANGE)
+	pipe.position.y = 512 / 2.0 + randi_range(-PIPE_RANGE, PIPE_RANGE)
 	if pipe_count % 2 == 0 and letter_index < WORD.length():
 		var next_letter = WORD[letter_index]
 		if pipe.get_node("Area2D").has_method("set_letter"):
@@ -94,7 +93,7 @@ func generate_pipes() -> void:
 func spawn_finish() -> void:
 	var finish = finish_scene.instantiate()
 	finish.position.x = 288 + PIPE_DELAY
-	finish.position.y = (512 - ground_height) / 2.0
+	finish.position.y = 512 / 2.0
 	
 	if finish.has_node("Area2D"):
 		finish.get_node("Area2D").body_entered.connect(_on_finish_entered)
@@ -112,9 +111,16 @@ func stop_game() -> void:
 	$Bird.flying = false
 	game_running = false
 	game_over = true
+	$Again.visible = true
 
 func check_top() -> void:
 	if $Bird.position.y < 0:
+		$Bird.flying = false
+		$Bird.falling = true
+		stop_game()
+		
+func check_bottom() -> void:
+	if $Bird.position.y > 512:
 		$Bird.flying = false
 		$Bird.falling = true
 		stop_game()
@@ -127,12 +133,6 @@ func bird_hit() -> void:
 	$Bird.flying = false
 	$Bird.falling = true
 	stop_game()
-
-
-func _on_ground_hit() -> void:
-	$Bird.flying = false
-	$Bird.falling = false
-	$Again.visible = true
 
 func _on_again_button_pressed() -> void:
 	new_game()

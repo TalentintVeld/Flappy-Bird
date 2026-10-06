@@ -30,8 +30,16 @@ To this:
 
 #canvas {
 	display: block;
-	height: 100vh !important;
+	aspect-ratio: 288 / 512 !important;
 	width: auto !important;
+	height: 100% !important;
+}
+
+@media (max-width: 288px) {
+	#canvas {
+		width: 100% !important;
+		height: auto !important;
+	}
 }
 
 This:

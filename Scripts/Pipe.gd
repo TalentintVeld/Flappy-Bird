@@ -9,9 +9,6 @@ func _on_body_entered(body) -> void:
 func set_letter(letter: String):
 	$Lower/Label1.text = letter
 	$Lower/Label1.show()
-	$Upper/Label2.text = letter
-	$Upper/Label2.show()
 
 func hide_letter():
 	$Lower/Label1.hide()
-	$Upper/Label2.hide()
