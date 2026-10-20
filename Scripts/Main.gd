@@ -5,7 +5,6 @@ extends Node2D
 
 const SCROLL_SPEED: float = 125.0
 const PIPE_DELAY: int = 150
-const PIPE_RANGE: int = 150
 const WORD: String = "HARIG"
 
 var game_running: bool
@@ -61,11 +60,22 @@ func _process(delta: float) -> void:
 		scroll += SCROLL_SPEED * delta
 		if scroll >= 288:
 			scroll = 0
-		# $Ground/Area2D.position.x = -scroll
-		
+			
 		for pipe in pipes:
 			if is_instance_valid(pipe):
 				pipe.position.x -= SCROLL_SPEED * delta
+				
+		for pipe in pipes:
+			if is_instance_valid(pipe) and pipe != $Bird:
+				if pipe.has_node("Area2D"):
+					var area = pipe.get_node("Area2D")
+					if area.has_method("set_falling"):
+						if $Bird.flying:
+							area.flying = true
+							area.falling = false
+						else:
+							area.flying = false
+							area.falling = true
 
 func _on_pipe_timer_timeout() -> void:
 	generate_pipes()
@@ -77,14 +87,16 @@ func generate_pipes() -> void:
 	
 	var pipe = pipe_scene.instantiate()
 	pipe.position.x = 288 + PIPE_DELAY
-	pipe.position.y = 512 / 2.0 + randi_range(-PIPE_RANGE, PIPE_RANGE)
-	if pipe_count % 2 == 0 and letter_index < WORD.length():
-		var next_letter = WORD[letter_index]
-		if pipe.get_node("Area2D").has_method("set_letter"):
-			pipe.get_node("Area2D").set_letter(next_letter)
-		letter_index += 1
-	elif pipe.get_node("Area2D").has_method("hide_letter"):
-		pipe.get_node("Area2D").hide_letter()
+	pipe.position.y = 512 + randi_range(0, 70)
+	
+	if pipe.has_node("Area2D"):
+		if pipe_count % 2 == 0 and letter_index < WORD.length():
+			var next_letter = WORD[letter_index]
+			if pipe.get_node("Area2D").has_method("set_letter"):
+				pipe.get_node("Area2D").set_letter(next_letter)
+			letter_index += 1
+		elif pipe.get_node("Area2D").has_method("hide_letter"):
+			pipe.get_node("Area2D").hide_letter()
 			
 	add_child(pipe)
 	pipes.append(pipe)

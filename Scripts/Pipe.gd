@@ -7,8 +7,8 @@ func _on_body_entered(body) -> void:
 			main_node.bird_hit()
 
 func set_letter(letter: String):
-	$Lower/Label1.text = letter
-	$Lower/Label1.show()
+	$Pipe/Label1.text = letter
+	$Pipe/Label1.show()
 
 func hide_letter():
-	$Lower/Label1.hide()
+	$Pipe/Label1.hide()

@@ -1,67 +1,41 @@
 [gd_scene format=3 uid="uid://dlj7j2vkfwcu4"]
 
 [ext_resource type="Script" uid="uid://cwkq6ave8bqtj" path="res://Scripts/Pipe.gd" id="1_nq301"]
-[ext_resource type="Texture2D" uid="uid://c085t3gk1cigu" path="res://Textures/pipe-red.png" id="2_t5chl"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7q8l"]
-size = Vector2(52, 320)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq301"]
-size = Vector2(52, 320)
+[ext_resource type="Texture2D" uid="uid://baumacl121ady" path="res://Textures/tree_pixel.png" id="2_nq301"]
 
 [node name="Pipe" type="Node2D" unique_id=1894315957]
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1303194830]
 script = ExtResource("1_nq301")
 
-[node name="Lower" type="Sprite2D" parent="Area2D" unique_id=1554397212]
-position = Vector2(0, 250)
-texture = ExtResource("2_t5chl")
+[node name="Pipe" type="Sprite2D" parent="Area2D" unique_id=1554397212]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_nq301")
+offset = Vector2(0, -58.5)
+flip_h = true
 
-[node name="Label1" type="Label" parent="Area2D/Lower" unique_id=1355515566]
-anchors_preset = 5
+[node name="Label1" type="Label" parent="Area2D/Pipe" unique_id=1355515566]
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -45.0
-offset_top = -160.0
-offset_right = -7.0
-offset_bottom = -91.0
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -159.5
+offset_right = -15.0
+offset_bottom = -133.49988
 grow_horizontal = 2
+grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 50
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="LowerCollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1618786620]
-position = Vector2(0, 250)
-shape = SubResource("RectangleShape2D_s7q8l")
-
-[node name="Upper" type="Sprite2D" parent="Area2D" unique_id=1151610341]
-position = Vector2(0, -250)
-texture = ExtResource("2_t5chl")
-flip_v = true
-
-[node name="Label2" type="Label" parent="Area2D/Upper" unique_id=524025863]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -45.0
-offset_top = -229.0
-offset_right = -7.0
-offset_bottom = -160.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 50
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="UpperCollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=138974707]
-position = Vector2(0, -250)
-shape = SubResource("RectangleShape2D_nq301")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=582149114]
+scale = Vector2(3, 3)
+polygon = PackedVector2Array(15, -118, 15, -117, 16, -117, 16, -116, 18, -116, 18, -115, 19, -115, 19, -113, 18, -113, 18, -112, 17, -112, 17, -108, 18, -108, 18, -106, 19, -106, 19, -103, 18, -103, 18, -101, 19, -101, 19, -99, 20, -99, 20, -98, 19, -98, 19, -97, 20, -97, 20, -96, 22, -96, 22, -91, 21, -91, 21, -90, 22, -90, 22, -83, 21, -83, 21, -82, 22, -82, 22, -70, 21, -70, 21, -69, 22, -69, 22, -67, 21, -67, 21, -66, 20, -66, 20, -64, 21, -64, 21, -62, 20, -62, 20, -61, 19, -61, 19, -56, 17, -56, 17, -51, 15, -51, 15, -48, 14, -48, 14, -45, 12, -45, 12, -42, 10, -42, 10, -39, 9, -39, 9, -37, 8, -37, 8, -34, 6, -34, 6, -23, 5, -23, 5, -3, 6, -3, 6, 1, -12, 1, -12, -18, -11, -18, -11, -34, -12, -34, -12, -37, -13, -37, -13, -38, -14, -38, -14, -40, -15, -40, -15, -42, -17, -42, -17, -45, -18, -45, -18, -49, -19, -49, -19, -53, -20, -53, -20, -54, -21, -54, -21, -56, -20, -56, -20, -58, -21, -58, -21, -59, -22, -59, -22, -76, -21, -76, -21, -86, -18, -86, -18, -92, -17, -92, -17, -93, -20, -93, -20, -94, -21, -94, -21, -95, -22, -95, -22, -96, -21, -96, -21, -98, -20, -98, -20, -100, -19, -100, -19, -101, -17, -101, -17, -102, -12, -102, -12, -101, -11, -101, -11, -100, -10, -100, -10, -97, -9, -97, -9, -94, -10, -94, -10, -93, -12, -93, -12, -86, -11, -86, -11, -85, -10, -85, -10, -69, -11, -69, -11, -61, -10, -61, -10, -57, -8, -57, -8, -55, -7, -55, -7, -51, -5, -51, -5, -62, -3, -62, -3, -69, -5, -69, -5, -76, -3, -76, -3, -77, 1, -77, 1, -76, 3, -76, 3, -69, 1, -69, 1, -62, 4, -62, 4, -55, 6, -55, 6, -57, 7, -57, 7, -61, 8, -61, 8, -66, 9, -66, 9, -74, 10, -74, 10, -86, 9, -86, 9, -93, 8, -93, 8, -99, 7, -99, 7, -106, 6, -106, 6, -110, 7, -110, 7, -115, 8, -115, 8, -116, 9, -116, 9, -117, 10, -117, 10, -118)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

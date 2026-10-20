@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dlj7j2vkfwcu4" path="res://Scenes/Pipe.tscn" id="2_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://b43mluws736me" path="res://Scenes/Finish.tscn" id="3_jw32o"]
 [ext_resource type="PackedScene" uid="uid://enka6wakk8k7" path="res://Scenes/Bird.tscn" id="3_rgh2o"]
-[ext_resource type="Texture2D" uid="uid://bvgylnkrvmho3" path="res://Textures/background.png" id="4_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://bbuu201qh0r7j" path="res://Scenes/BirdEnemy.tscn" id="3_v1gob"]
+[ext_resource type="Texture2D" uid="uid://c2u03i4u2pejo" path="res://Textures/background_pixel.png" id="5_v1gob"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jw32o"]
 
@@ -19,13 +20,15 @@
 [node name="Main" type="Node2D" unique_id=1262506493]
 script = ExtResource("1_kln2b")
 pipe_scene = ExtResource("2_pbw6q")
+bird_enemy_scene = ExtResource("3_v1gob")
 finish_scene = ExtResource("3_jw32o")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=52140114]
-position = Vector2(144, 256)
-scale = Vector2(0.17066708, 0.17066666)
-texture = ExtResource("4_pbw6q")
-offset = Vector2(1156.25, 0)
+z_index = -1
+texture_filter = 1
+scale = Vector2(4.2352943, 4.2352953)
+texture = ExtResource("5_v1gob")
+centered = false
 
 [node name="Bird" parent="." unique_id=267687095 instance=ExtResource("3_rgh2o")]
 position = Vector2(50, 180)
